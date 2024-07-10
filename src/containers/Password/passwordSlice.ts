@@ -6,12 +6,14 @@ interface PasswordState {
   value: string;
   passwordColor: string;
   passwordMessage: string;
+  frozen: boolean;
 }
 
 const initialState: PasswordState = {
   value: '',
   passwordColor: 'grey',
   passwordMessage: '',
+  frozen: false,
 };
 
 export const passwordSlice = createSlice({
@@ -19,12 +21,14 @@ export const passwordSlice = createSlice({
   initialState,
   reducers: {
     addNumber: (state, action: PayloadAction<string>) => {
-      if (state.value.length < 4) {
+      if (state.value.length < 4 && !state.frozen) {
         state.value += action.payload;
       }
     },
     removeNumber: (state) => {
-      state.value = state.value.slice(0, -1);
+      if (!state.frozen) {
+        state.value = state.value.slice(0, -1);
+      }
     },
     checkPassword: (state) => {
       if (state.value === correctPassword) {
@@ -36,11 +40,13 @@ export const passwordSlice = createSlice({
         state.passwordColor = 'red';
         state.passwordMessage = 'Access Denied';
       }
+      state.frozen = true;
     },
     resetPassword: (state) => {
       state.value = '';
       state.passwordColor = 'grey';
       state.passwordMessage = '';
+      state.frozen = false;
     }
   }
 });

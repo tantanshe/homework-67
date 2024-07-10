@@ -30,13 +30,15 @@ const Password = () => {
   };
   return (
     <div>
-      {buttons.map((num) => (
-        <button onClick={() => {
-          buttonClick(num);
-        }}>
-          {num}
-        </button>))}
-      <button onClick={() => dispatch(resetPassword())}>Reset</button>
+      <div className="password-buttons">
+        {buttons.map((num) => (
+          <button className="button" onClick={() => {
+            buttonClick(num);
+          }}>
+            {num}
+          </button>))}
+      </div>
+      <button className="button reset" onClick={() => dispatch(resetPassword())}>Reset</button>
     </div>
   );
 };

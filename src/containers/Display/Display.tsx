@@ -8,7 +8,7 @@ const Display = () => {
   const hiddenValue = passwordValue.replace(/./g, '*');
   return (
     <>
-      <div style={{backgroundColor: passwordColor}}>
+      <div className="display" style={{backgroundColor: passwordColor}}>
         {hiddenValue}
         {passwordMessage}
       </div>

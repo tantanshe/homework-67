@@ -5,10 +5,10 @@ import Display from './containers/Display/Display';
 const App = () => {
 
   return (
-    <>
+    <div className='password-system'>
       <Display/>
       <Password/>
-    </>
+    </div>
   );
 };
 

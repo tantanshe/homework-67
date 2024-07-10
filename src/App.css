@@ -4,3 +4,41 @@
   padding: 2rem;
   text-align: center;
 }
+
+.password-system {
+  border: 1px solid teal;
+  max-width: 250px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.display {
+  color: white;
+  font-size: 20px;
+  padding: 20px 0;
+  height: 20px;
+}
+
+.button {
+  font-size: 20px;
+  background-color: #eaeaea;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.reset {
+  border: 2px solid #ff4a4a;
+}
+
+.password-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  max-width: 250px;
+  margin: 0 auto;
+}
