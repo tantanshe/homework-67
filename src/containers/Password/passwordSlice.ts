@@ -4,10 +4,14 @@ const correctPassword = '1127';
 
 interface PasswordState {
   value: string;
+  passwordColor: string;
+  passwordMessage: string;
 }
 
 const initialState: PasswordState = {
   value: '',
+  passwordColor: 'grey',
+  passwordMessage: '',
 };
 
 export const passwordSlice = createSlice({
@@ -15,15 +19,22 @@ export const passwordSlice = createSlice({
   initialState,
   reducers: {
     addNumber: (state, action: PayloadAction<string>) => {
-      if (state.value <= 4) {
+      if (state.value.length < 4) {
         state.value += action.payload;
       }
     },
-    removeNumber: (state, action: PayloadAction<string>) => {
-      if (state.value <= 4) {
-        state.value += state.value.slice(0, -1);
+    removeNumber: (state) => {
+        state.value = state.value.slice(0, -1);
+    },
+    checkPassword: (state) => {
+      if (state.value === correctPassword) {
+        state.passwordColor = 'green';
+        state.passwordMessage = 'Access Granted';
+      } else {
+        state.passwordColor = 'red';
+        state.passwordMessage = 'Access Denied';
       }
-    }
+    },
   }
 });
 
@@ -31,5 +42,6 @@ export const passwordReducer = passwordSlice.reducer;
 
 export const {
   addNumber,
-  removeNumber
+  removeNumber,
+  checkPassword
 } = passwordSlice.actions;
