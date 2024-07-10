@@ -1,4 +1,4 @@
-import {ActionCreator, createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 const correctPassword = '1127';
 
@@ -24,17 +24,24 @@ export const passwordSlice = createSlice({
       }
     },
     removeNumber: (state) => {
-        state.value = state.value.slice(0, -1);
+      state.value = state.value.slice(0, -1);
     },
     checkPassword: (state) => {
       if (state.value === correctPassword) {
+        state.value = '';
         state.passwordColor = 'green';
         state.passwordMessage = 'Access Granted';
       } else {
+        state.value = '';
         state.passwordColor = 'red';
         state.passwordMessage = 'Access Denied';
       }
     },
+    resetPassword: (state) => {
+      state.value = '';
+      state.passwordColor = 'grey';
+      state.passwordMessage = '';
+    }
   }
 });
 
@@ -43,5 +50,6 @@ export const passwordReducer = passwordSlice.reducer;
 export const {
   addNumber,
   removeNumber,
-  checkPassword
+  checkPassword,
+  resetPassword
 } = passwordSlice.actions;

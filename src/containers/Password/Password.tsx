@@ -1,10 +1,8 @@
 import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../../app/store';
-import {addNumber, checkPassword, removeNumber} from './passwordSlice';
+import {useDispatch} from 'react-redux';
+import {addNumber, checkPassword, removeNumber, resetPassword} from './passwordSlice';
 
 const Password = () => {
-  const passwordValue = useSelector((state: RootState) => state.password.value);
   const dispatch = useDispatch();
   const buttons = [
     '7',
@@ -32,13 +30,13 @@ const Password = () => {
   };
   return (
     <div>
-      <h1>{passwordValue}</h1>
       {buttons.map((num) => (
         <button onClick={() => {
           buttonClick(num);
         }}>
           {num}
         </button>))}
+      <button onClick={() => dispatch(resetPassword())}>Reset</button>
     </div>
   );
 };
